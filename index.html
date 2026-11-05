@@ -1,22 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#f8f5ed">
+
 <title>Vivek &amp; Riya — Reception</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Great+Vibes&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
 
 <style>
 :root {
-  --green: #657b63;
-  --dark-green: #344b37;
-  --soft-green: #e8eee4;
-  --ivory: #f7f6ef;
-  --gold: #9b8c67;
-  --text: #263528;
+  --ivory: #f8f5ed;
+  --cream: #eee9dc;
+  --sage: #657b63;
+  --deep-sage: #405640;
+  --gold: #b69a60;
+  --dark: #344335;
+  --muted: #777b6d;
+  --white: #fffefa;
+  --shadow: 0 18px 55px rgba(62, 75, 54, .10);
 }
 
 * {
   box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
 html {
@@ -24,410 +35,545 @@ html {
 }
 
 body {
-  margin: 0;
-  font-family: "Palatino Linotype", "Book Antiqua", Georgia, serif;
   background: var(--ivory);
-  color: var(--text);
+  color: var(--dark);
+  font-family: 'Montserrat', sans-serif;
   overflow-x: hidden;
 }
 
-#app {
-  min-height: 100vh;
-  width: 100%;
-  overflow: hidden;
-  background: var(--ivory);
+button {
+  font: inherit;
 }
-
-/* OPENING HERO */
 
 .hero {
+  min-height: 100vh;
   min-height: 100svh;
-  display: grid;
-  place-items: center;
-  text-align: center;
-  padding: 70px 22px;
   position: relative;
-  isolation: isolate;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 60px 22px;
   overflow: hidden;
+  isolation: isolate;
   background:
-    radial-gradient(ellipse at 50% 15%, #fffdf7 0, transparent 55%),
-    linear-gradient(145deg, #f8f6ed, #e8eee4 58%, #f5f1e7);
-}
-
-.hero::before,
-.hero::after {
-  content: "";
-  position: absolute;
-  width: min(42vw, 390px);
-  height: min(42vw, 390px);
-  border: 1px solid #9aa88e;
-  border-radius: 100% 0 100% 0;
-  opacity: .28;
-  z-index: -1;
+    radial-gradient(ellipse at 50% 40%, rgba(255,255,255,.95), transparent 62%),
+    linear-gradient(145deg, #f9f7f0, #e9eddf 55%, #f5eee0);
 }
 
 .hero::before {
-  left: -100px;
-  top: -100px;
-  transform: rotate(25deg);
-  box-shadow:
-    25px 25px 0 -24px #8a9d83,
-    50px 50px 0 -49px #8a9d83;
-  animation: botanicalDrift 12s ease-in-out infinite alternate;
+  content: "";
+  position: absolute;
+  inset: 22px;
+  border: 1px solid rgba(182,154,96,.45);
+  pointer-events: none;
+  z-index: -1;
 }
 
 .hero::after {
-  right: -120px;
-  bottom: -100px;
-  transform: rotate(205deg);
-  box-shadow:
-    25px 25px 0 -24px #8a9d83,
-    50px 50px 0 -49px #8a9d83;
-  animation: botanicalDrift 15s ease-in-out infinite alternate-reverse;
+  content: "";
+  position: absolute;
+  top: -20%;
+  left: -70%;
+  width: 45%;
+  height: 140%;
+  transform: rotate(18deg);
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255,255,255,.55),
+    rgba(226,205,153,.18),
+    transparent
+  );
+  animation: lightSweep 9s ease-in-out 1.5s infinite;
+  pointer-events: none;
+  z-index: 2;
 }
 
-.hero > div {
-  animation: cinematicEntrance 1.8s ease both;
+.hero-content {
+  position: relative;
+  z-index: 3;
+  width: 100%;
+  max-width: 850px;
+  animation: cinematicIn 2s ease both;
 }
 
-.eyebrow {
-  letter-spacing: .28em;
+.hero-eyebrow {
+  color: var(--sage);
+  font-size: 10px;
+  letter-spacing: 4px;
   text-transform: uppercase;
-  font: 11px Arial, sans-serif;
-  color: #6c806a;
-  animation: fadeIn 1.5s ease both;
+  margin-bottom: 28px;
+  animation: fadeUp 1.4s ease .3s both;
 }
 
 .cross {
-  color: #788b75;
-  font-size: 22px;
-  margin: 20px 0;
-  opacity: .85;
-  animation: crossGlow 4s ease-in-out infinite;
-}
-
-h1 {
-  font-family: "Palatino Linotype", "Book Antiqua", Georgia, serif;
-  font-size: clamp(48px, 9vw, 92px);
-  font-weight: 400;
-  line-height: 1.02;
-  letter-spacing: -.045em;
-  margin: 18px 0;
-  color: var(--dark-green);
-  animation: nameReveal 1.8s ease both;
-}
-
-.amp {
+  position: relative;
+  display: inline-block;
   color: var(--gold);
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 48px;
+  line-height: 1;
+  margin: 0 auto 24px;
+  text-shadow:
+    0 0 7px rgba(182,154,96,.65),
+    0 0 18px rgba(182,154,96,.45),
+    0 0 35px rgba(182,154,96,.25);
+  animation: crossBreathing 3.8s ease-in-out infinite;
+}
+
+.cross::after {
+  content: "";
+  position: absolute;
+  width: 76px;
+  height: 76px;
+  border-radius: 50%;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  background: radial-gradient(
+    circle,
+    rgba(218,190,124,.32) 0%,
+    rgba(218,190,124,.12) 42%,
+    transparent 72%
+  );
+  z-index: -1;
+  animation: haloPulse 3.8s ease-in-out infinite;
+}
+
+.hero-names {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(45px, 8vw, 82px);
+  font-weight: 500;
+  line-height: 1.03;
+  color: var(--deep-sage);
+  letter-spacing: 1px;
+}
+
+.name-first {
+  display: block;
+  animation: nameReveal 1.5s ease .6s both;
+}
+
+.name-ampersand {
+  display: block;
+  color: var(--gold);
+  font-family: 'Great Vibes', cursive;
+  font-size: .75em;
+  line-height: 1.1;
+  animation: fadeUp 1.5s ease 1.1s both;
+}
+
+.name-second {
+  display: block;
+  animation: nameReveal 1.5s ease 1.4s both;
+}
+
+.hero-tagline {
+  margin-top: 28px;
+  color: var(--muted);
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 23px;
   font-style: italic;
-  font-size: .72em;
+  animation: fadeUp 1.5s ease 1.8s both;
 }
 
-.tagline {
-  font-size: clamp(17px, 2.5vw, 22px);
-  font-style: italic;
-  color: #657761;
-  margin: 22px auto 34px;
-  animation: fadeIn 2s ease both;
+.hero-date {
+  margin-top: 28px;
+  color: var(--deep-sage);
+  font-size: 11px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  line-height: 2;
+  animation: fadeUp 1.5s ease 2s both;
 }
 
-.rule {
-  width: 90px;
-  height: 1px;
-  background: #9b9b79;
-  margin: 24px auto;
-  border: 0;
-  animation: lineExpand 1.5s ease both;
-}
-
-.date {
-  font-size: 19px;
-  letter-spacing: .12em;
-  color: #455a46;
-  animation: fadeIn 2.2s ease both;
-}
-
-.time {
-  font: 12px Arial, sans-serif;
-  letter-spacing: .18em;
-  color: #657761;
-  margin-top: 12px;
-  animation: fadeIn 2.5s ease both;
-}
-
-/* OPEN INVITATION BUTTON */
-
-.open-btn {
-  border: 1px solid #6d826b;
-  background: #657b63;
-  color: #fff;
-  border-radius: 99px;
-  padding: 14px 27px;
-  font: 12px Arial, sans-serif;
-  letter-spacing: .12em;
+.open-button {
+  margin-top: 35px;
+  border: 1px solid var(--gold);
+  background: rgba(255,255,255,.35);
+  color: var(--deep-sage);
+  padding: 15px 32px;
+  letter-spacing: 2px;
+  font-size: 10px;
   text-transform: uppercase;
   cursor: pointer;
-  transition: .35s ease;
-  animation: buttonFloat 3s ease-in-out infinite;
+  transition: background .4s, color .4s, box-shadow .4s;
+  animation: buttonFloat 4s ease-in-out 2.3s infinite;
 }
 
-.open-btn:hover {
-  background: #455b47;
-  transform: translateY(-4px);
-  box-shadow: 0 10px 25px rgba(52, 75, 55, .2);
+.open-button:hover {
+  background: var(--deep-sage);
+  color: white;
+  box-shadow: 0 0 25px rgba(182,154,96,.35);
 }
 
-/* MAIN INVITATION */
+.petals {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 1;
+}
 
-main {
+.petal {
+  position: absolute;
+  top: -12%;
+  width: 10px;
+  height: 15px;
+  border-radius: 90% 10% 90% 10%;
+  background: rgba(190,171,126,.36);
+  animation: petalFall linear infinite;
+}
+
+.petal:nth-child(1) { left: 8%; animation-duration: 13s; animation-delay: 0s; }
+.petal:nth-child(2) { left: 22%; animation-duration: 17s; animation-delay: 3s; }
+.petal:nth-child(3) { left: 39%; animation-duration: 14s; animation-delay: 1s; }
+.petal:nth-child(4) { left: 58%; animation-duration: 18s; animation-delay: 5s; }
+.petal:nth-child(5) { left: 76%; animation-duration: 15s; animation-delay: 2s; }
+.petal:nth-child(6) { left: 91%; animation-duration: 19s; animation-delay: 4s; }
+
+#invitation {
   display: none;
+  opacity: 0;
 }
 
-main.visible {
+#invitation.visible {
   display: block;
-  animation: mainReveal 1.2s ease both;
+  animation: invitationAppear 1.8s ease forwards;
 }
 
 section {
-  padding: 82px 22px;
-  text-align: center;
+  padding: 95px 22px;
 }
 
 .section-inner {
-  width: min(850px, 100%);
+  max-width: 1000px;
   margin: auto;
 }
 
-.kicker {
-  font: 11px Arial, sans-serif;
-  letter-spacing: .24em;
-  text-transform: uppercase;
-  color: #71866d;
+.section-heading {
+  text-align: center;
+  margin-bottom: 45px;
 }
 
-h2 {
-  font-size: clamp(30px, 5vw, 48px);
-  font-weight: 400;
-  color: #405743;
-  margin: 15px 0 22px;
+.section-kicker {
+  color: var(--gold);
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 4px;
+  margin-bottom: 14px;
+}
+
+.section-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(36px, 5vw, 53px);
+  font-weight: 500;
+  color: var(--deep-sage);
+}
+
+.section-divider {
+  width: 65px;
+  height: 1px;
+  background: var(--gold);
+  margin: 22px auto 0;
+  position: relative;
+}
+
+.section-divider::after {
+  content: "✦";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  background: var(--ivory);
+  color: var(--gold);
+  padding: 0 9px;
+  font-size: 11px;
 }
 
 .intro {
-  font-size: 19px;
-  line-height: 1.8;
-  color: #647260;
-  max-width: 620px;
-  margin: 0 auto;
+  text-align: center;
+  background: var(--ivory);
 }
 
-.floral-band {
-  background: #e9eee5;
+.intro-text {
+  max-width: 650px;
+  margin: auto;
+  color: #697064;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 25px;
+  line-height: 1.65;
 }
-
-/* FAMILY CARDS */
 
 .families {
+  background: #f0eee5;
+}
+
+.family-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 34px;
-  margin-top: 38px;
+  gap: 26px;
 }
 
-.family {
-  padding: 25px;
-  border-top: 1px solid #aab59f;
-  border-bottom: 1px solid #aab59f;
-  transition: transform .5s ease, box-shadow .5s ease;
+.family-card {
+  background: rgba(255,254,250,.8);
+  border: 1px solid rgba(182,154,96,.25);
+  padding: 38px 24px;
+  text-align: center;
+  box-shadow: var(--shadow);
+  transition: transform .5s, box-shadow .5s;
 }
 
-.family:hover {
-  transform: translateY(-7px);
-  box-shadow: 0 12px 28px rgba(52, 75, 55, .09);
+.family-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 22px 55px rgba(62,75,54,.14);
 }
 
-.family h3 {
-  font-weight: 400;
-  font-size: 25px;
-  color: #405743;
+.family-card:nth-child(2) {
+  transition-delay: .15s;
 }
 
-.family p {
-  font-size: 17px;
-  line-height: 1.8;
-  color: #5f705d;
+.family-side {
+  color: var(--gold);
+  font-size: 10px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  margin-bottom: 22px;
 }
 
-/* PHOTO SLIDESHOW */
+.family-card h3 {
+  font-family: 'Cormorant Garamond', serif;
+  color: var(--deep-sage);
+  font-size: 27px;
+  font-weight: 500;
+  margin-bottom: 19px;
+}
+
+.family-names {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 21px;
+  line-height: 1.9;
+  color: #646b5f;
+}
+
+.siblings {
+  background: var(--ivory);
+}
+
+.siblings .family-card {
+  background: #fffefa;
+}
 
 .gallery {
-  background: #f5f3ea;
-}
-
-.slideshow {
-  max-width: 720px;
-  margin: 30px auto 0;
+  background: #f0eee5;
 }
 
 .photo-frame {
-  aspect-ratio: 16 / 10;
-  border: 1px solid #c4c9b9;
-  background: linear-gradient(135deg, #e6ebdf, #f9f7ee);
-  display: grid;
-  place-items: center;
-  padding: 25px;
-  color: #61745e;
-  transition: transform .7s ease, box-shadow .7s ease;
-  animation: photoBreathing 5s ease-in-out infinite;
+  max-width: 720px;
+  margin: auto;
+  min-height: 360px;
+  border: 1px solid rgba(182,154,96,.45);
+  padding: 12px;
+  background: rgba(255,255,255,.55);
+  box-shadow: var(--shadow);
+  position: relative;
+  animation: photoBreath 7s ease-in-out infinite;
 }
 
-.photo-frame strong {
-  display: block;
-  font-size: 24px;
-  font-weight: 400;
-  margin-bottom: 8px;
-}
-
-.photo-frame span {
-  font: 12px Arial, sans-serif;
-  letter-spacing: .1em;
-}
-
-.dots {
+.photo-placeholder {
+  min-height: 335px;
   display: flex;
-  gap: 10px;
+  align-items: center;
   justify-content: center;
-  margin: 18px;
+  flex-direction: column;
+  background:
+    linear-gradient(rgba(240,238,229,.72), rgba(240,238,229,.72)),
+    radial-gradient(circle at 50% 40%, #d8ddce, #e8dfcd);
+  text-align: center;
+  padding: 30px;
 }
 
-.dot {
-  width: 8px;
-  height: 8px;
+.photo-placeholder .photo-symbol {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 48px;
+  color: var(--gold);
+  margin-bottom: 15px;
+}
+
+.photo-placeholder p {
+  font-family: 'Cormorant Garamond', serif;
+  color: var(--deep-sage);
+  font-size: 24px;
+}
+
+.photo-placeholder small {
+  color: var(--muted);
+  margin-top: 10px;
+  font-size: 10px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.slide-dots {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 24px;
+}
+
+.slide-dot {
+  width: 9px;
+  height: 9px;
+  border: none;
   border-radius: 50%;
-  border: 0;
-  background: #c1cbb9;
+  background: #c7c6b8;
   cursor: pointer;
-  transition: transform .3s ease, background .3s ease;
+  transition: all .3s;
 }
 
-.dot:hover {
-  transform: scale(1.5);
+.slide-dot.active {
+  background: var(--gold);
+  transform: scale(1.35);
 }
-
-.dot.active {
-  background: #657b63;
-  transform: scale(1.3);
-}
-
-/* BIBLE VERSE */
 
 .verse {
-  background: #e8ede4;
+  background: var(--ivory);
+  text-align: center;
+  position: relative;
+}
+
+.verse-cross {
+  font-size: 40px;
+  margin-bottom: 25px;
 }
 
 .verse blockquote {
-  font-size: clamp(20px, 3vw, 28px);
+  max-width: 730px;
+  margin: auto;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(26px, 4vw, 37px);
+  line-height: 1.5;
+  color: var(--deep-sage);
   font-style: italic;
-  line-height: 1.6;
-  max-width: 680px;
-  margin: 24px auto 14px;
-  color: #4c614d;
 }
 
-.verse cite {
-  font: 11px Arial, sans-serif;
-  letter-spacing: .16em;
+.verse-reference {
+  color: var(--gold);
+  margin-top: 24px;
+  letter-spacing: 3px;
+  font-size: 10px;
   text-transform: uppercase;
-  color: #788b75;
 }
-
-/* VENUE DETAILS */
 
 .details {
-  background: #f8f6ef;
+  background: #eef0e7;
 }
 
-.detail-card {
-  border: 1px solid #b6c0ae;
-  padding: 38px 24px;
-  max-width: 600px;
-  margin: 28px auto;
-  background: rgba(255, 255, 255, .38);
-  transition: transform .5s ease, box-shadow .5s ease;
+.venue-card {
+  max-width: 700px;
+  margin: auto;
+  text-align: center;
+  background: rgba(255,254,250,.85);
+  padding: 50px 25px;
+  border: 1px solid rgba(182,154,96,.35);
+  box-shadow: var(--shadow);
 }
 
-.detail-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 15px 35px rgba(52, 75, 55, .1);
+.venue-icon {
+  color: var(--gold);
+  font-size: 35px;
+  margin-bottom: 18px;
 }
 
-.detail-card p {
+.venue-name {
+  font-family: 'Cormorant Garamond', serif;
+  color: var(--deep-sage);
+  font-size: 35px;
+  margin-bottom: 8px;
+}
+
+.venue-address {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 21px;
   line-height: 1.7;
-  font-size: 18px;
-  color: #536653;
+  color: #697064;
 }
 
-.detail-card .venue {
-  font-size: 27px;
-  color: #405743;
+.event-time {
+  margin-top: 30px;
+  color: var(--deep-sage);
+  line-height: 2.2;
+  font-size: 12px;
+  letter-spacing: 1px;
 }
 
 .map-link {
-  color: #5f785d;
-  text-underline-offset: 4px;
+  display: inline-block;
+  margin-top: 25px;
+  padding: 13px 25px;
+  color: var(--deep-sage);
+  border: 1px solid var(--gold);
+  text-decoration: none;
+  font-size: 10px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  transition: all .3s;
 }
 
-/* FOOTER */
+.map-link:hover {
+  background: var(--deep-sage);
+  color: white;
+}
 
 footer {
-  padding: 58px 20px 70px;
+  min-height: 260px;
+  padding: 85px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   text-align: center;
-  background: #e6ece2;
-  color: #50664f;
+  background: #3e5540;
+  color: #e8dfc9;
 }
 
-footer .names {
-  font-size: 38px;
-  font-style: italic;
-  margin: 10px 0;
+.footer-name {
+  font-family: 'Great Vibes', cursive;
+  font-size: clamp(42px, 7vw, 65px);
+  letter-spacing: 3px;
+  animation: footerReveal 4s ease-in-out infinite alternate;
 }
 
-.small-note {
-  font: 11px Arial, sans-serif;
-  letter-spacing: .1em;
-  opacity: .7;
-}
-
-/* SCROLL REVEAL ANIMATIONS */
+/* Scroll reveal */
 
 .reveal {
   opacity: 0;
   transform: translateY(35px);
-  transition: opacity 1s ease, transform 1s ease;
+  filter: blur(3px);
+  transition:
+    opacity 1.1s ease,
+    transform 1.1s ease,
+    filter 1.1s ease;
 }
 
-.reveal.visible {
+.reveal.is-visible {
   opacity: 1;
   transform: translateY(0);
+  filter: blur(0);
 }
 
-.family.reveal:nth-child(2) {
-  transition-delay: .2s;
-}
+/* Animation keyframes */
 
-.detail-card.reveal {
-  transition-delay: .15s;
-}
-
-/* ANIMATION DEFINITIONS */
-
-@keyframes cinematicEntrance {
+@keyframes cinematicIn {
   from {
     opacity: 0;
-    transform: translateY(35px) scale(.97);
+    transform: scale(1.08);
+    filter: blur(10px);
   }
   to {
     opacity: 1;
-    transform: translateY(0) scale(1);
+    transform: scale(1);
+    filter: blur(0);
   }
 }
 
@@ -435,333 +581,511 @@ footer .names {
   from {
     opacity: 0;
     transform: translateY(25px);
-    letter-spacing: .08em;
+    letter-spacing: 8px;
+    filter: blur(5px);
   }
   to {
     opacity: 1;
     transform: translateY(0);
-    letter-spacing: -.045em;
+    letter-spacing: 1px;
+    filter: blur(0);
   }
 }
 
-@keyframes mainReveal {
-  from {
-    opacity: 0;
-    transform: translateY(25px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(18px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
-@keyframes fadeIn {
+@keyframes invitationAppear {
   from { opacity: 0; }
   to { opacity: 1; }
 }
 
-@keyframes lineExpand {
-  from { width: 0; opacity: 0; }
-  to { width: 90px; opacity: 1; }
-}
-
-@keyframes botanicalDrift {
-  from { transform: rotate(25deg) translateY(0); }
-  to { transform: rotate(35deg) translateY(18px); }
-}
-
-@keyframes crossGlow {
+@keyframes crossBreathing {
   0%, 100% {
-    opacity: .65;
-    text-shadow: 0 0 0 transparent;
+    transform: scale(1);
+    text-shadow:
+      0 0 7px rgba(182,154,96,.65),
+      0 0 18px rgba(182,154,96,.45),
+      0 0 35px rgba(182,154,96,.25);
   }
   50% {
-    opacity: 1;
-    text-shadow: 0 0 12px rgba(120, 139, 117, .35);
+    transform: scale(1.16);
+    text-shadow:
+      0 0 12px rgba(207,174,103,.95),
+      0 0 30px rgba(207,174,103,.75),
+      0 0 55px rgba(207,174,103,.45);
   }
+}
+
+@keyframes haloPulse {
+  0%, 100% { opacity: .45; transform: translate(-50%, -50%) scale(.8); }
+  50% { opacity: 1; transform: translate(-50%, -50%) scale(1.45); }
+}
+
+@keyframes lightSweep {
+  0%, 25% { left: -70%; }
+  65%, 100% { left: 130%; }
+}
+
+@keyframes petalFall {
+  0% { transform: translate3d(0, -5vh, 0) rotate(0deg); opacity: 0; }
+  12% { opacity: .75; }
+  85% { opacity: .55; }
+  100% { transform: translate3d(65px, 110vh, 0) rotate(280deg); opacity: 0; }
 }
 
 @keyframes buttonFloat {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-5px); }
+  0%, 100% { transform: translateY(0); box-shadow: 0 0 0 rgba(182,154,96,0); }
+  50% { transform: translateY(-5px); box-shadow: 0 8px 24px rgba(182,154,96,.2); }
 }
 
-@keyframes photoBreathing {
-  0%, 100% {
-    transform: scale(1);
-    box-shadow: 0 0 0 rgba(52, 75, 55, 0);
-  }
-  50% {
-    transform: scale(1.008);
-    box-shadow: 0 12px 28px rgba(52, 75, 55, .08);
-  }
+@keyframes photoBreath {
+  0%, 100% { box-shadow: 0 18px 55px rgba(62,75,54,.10); }
+  50% { box-shadow: 0 22px 65px rgba(182,154,96,.17); }
 }
 
-/* MOBILE RESPONSIVENESS */
+@keyframes footerReveal {
+  from { letter-spacing: 2px; opacity: .8; }
+  to { letter-spacing: 7px; opacity: 1; }
+}
 
-@media(max-width: 600px) {
-  .families {
+/* Responsive design */
+
+@media (max-width: 650px) {
+  .hero {
+    padding: 50px 24px;
+  }
+
+  .hero::before {
+    inset: 12px;
+  }
+
+  .hero-eyebrow {
+    font-size: 9px;
+    letter-spacing: 2.5px;
+  }
+
+  .hero-names {
+    font-size: clamp(42px, 12vw, 62px);
+  }
+
+  .hero-tagline {
+    font-size: 20px;
+  }
+
+  .hero-date {
+    font-size: 10px;
+    letter-spacing: 2px;
+  }
+
+  section {
+    padding: 72px 20px;
+  }
+
+  .family-grid {
     grid-template-columns: 1fr;
     gap: 18px;
   }
 
-  section {
-    padding: 65px 20px;
+  .family-card {
+    padding: 32px 18px;
   }
 
-  .family {
-    padding: 18px;
+  .photo-frame {
+    min-height: 300px;
   }
 
-  .hero {
-    padding: 55px 18px;
+  .photo-placeholder {
+    min-height: 275px;
   }
 
-  .time {
-    line-height: 1.8;
+  .venue-card {
+    padding: 38px 20px;
+  }
+
+  .venue-name {
+    font-size: 30px;
+  }
+
+  .venue-address {
+    font-size: 19px;
   }
 }
 
-/* ACCESSIBILITY */
-
-@media(prefers-reduced-motion: reduce) {
+@media (prefers-reduced-motion: reduce) {
   *,
   *::before,
   *::after {
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .01ms !important;
     scroll-behavior: auto !important;
-    animation: none !important;
-    transition: none !important;
   }
 
   .reveal {
     opacity: 1;
     transform: none;
+    filter: none;
   }
 }
 </style>
 </head>
 
 <body>
-<div id="app">
 
-<header class="hero">
-  <div>
-    <div class="eyebrow">Together with our families</div>
-    <div class="cross" aria-hidden="true">✝</div>
-    <div class="eyebrow">Joyfully invite you to celebrate</div>
+<header class="hero" id="opening">
 
-    <h1>Vivek <span class="amp">&amp;</span><br>Riya</h1>
+  <div class="petals" aria-hidden="true">
+    <span class="petal"></span>
+    <span class="petal"></span>
+    <span class="petal"></span>
+    <span class="petal"></span>
+    <span class="petal"></span>
+    <span class="petal"></span>
+  </div>
 
-    <div class="rule"></div>
+  <div class="hero-content">
 
-    <p class="tagline">A celebration of love and togetherness</p>
+    <div class="cross" aria-label="Orthodox Christian cross">☦</div>
 
-    <div class="date">15 · JANUARY · 2027</div>
+    <p class="hero-eyebrow">Together with our families</p>
 
-    <div class="time">
-      FRIDAY · GUEST ARRIVAL 4:45 PM · RECEPTION 5:00 PM
-    </div>
+    <h1 class="hero-names">
+      <span class="name-first">Vivek Koshy Mathew</span>
+      <span class="name-ampersand">&amp;</span>
+      <span class="name-second">Riya Rachal Abraham</span>
+    </h1>
 
-    <div style="margin-top:34px">
-      <button class="open-btn" id="openInvite">
-        Open invitation
-      </button>
-    </div>
+    <p class="hero-tagline">
+      A celebration of love and togetherness
+    </p>
+
+    <p class="hero-date">
+      Friday · 15 January 2027<br>
+      Guest Arrival · 4:45 PM<br>
+      Reception · 5:00 PM
+    </p>
+
+    <button class="open-button" id="openInvitation">
+      Open Invitation
+    </button>
+
   </div>
 </header>
 
-<main id="invitation">
 
-<section>
-  <div class="section-inner reveal">
-    <div class="kicker">With grateful hearts</div>
+<div id="invitation">
 
-    <h2>
-      We would be delighted<br>
-      to celebrate with you
-    </h2>
+  <main>
 
-    <p class="intro">
-      Please join us as we gather with our families and loved ones
-      for an evening of joy, gratitude and togetherness.
-    </p>
-  </div>
-</section>
+    <!-- Welcome -->
 
-<section class="floral-band">
-  <div class="section-inner">
-    <div class="kicker reveal">Our families</div>
+    <section class="intro">
+      <div class="section-inner reveal">
 
-    <h2 class="reveal">With the blessings of our parents</h2>
-
-    <div class="families">
-      <div class="family reveal">
-        <h3>Groom's Family</h3>
-        <p>
-          Rev. Fr. Koshy Mathew<br>
-          Mrs. Rachel P. Jose
-        </p>
-      </div>
-
-      <div class="family reveal">
-        <h3>Bride's Family</h3>
-        <p>
-          Late Mr. K. A. Abraham<br>
-          Mrs. Jessy Abraham
-        </p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="gallery">
-  <div class="section-inner">
-    <div class="kicker reveal">A few cherished moments</div>
-
-    <h2 class="reveal">Our story in photographs</h2>
-
-    <p class="intro reveal">
-      A little collection of moments we look forward to sharing with you.
-    </p>
-
-    <div class="slideshow reveal">
-      <div class="photo-frame" id="photoFrame">
-        <div>
-          <strong>Your photographs will appear here</strong>
-          <span>SLIDESHOW · PHOTOS TO BE ADDED</span>
+        <div class="section-heading">
+          <p class="section-kicker">With grateful hearts</p>
+          <h2 class="section-title">A Joyful Celebration</h2>
+          <div class="section-divider"></div>
         </div>
+
+        <p class="intro-text">
+          With the blessings of God and the love of our families,
+          we warmly invite you to join us as we celebrate a beautiful
+          beginning and share the joy of this special occasion.
+        </p>
+
       </div>
+    </section>
 
-      <div class="dots" aria-label="Slideshow navigation">
-        <button class="dot active" aria-label="Slide 1"></button>
-        <button class="dot" aria-label="Slide 2"></button>
-        <button class="dot" aria-label="Slide 3"></button>
+
+    <!-- Parents -->
+
+    <section class="families">
+      <div class="section-inner">
+
+        <div class="section-heading reveal">
+          <p class="section-kicker">Our blessings</p>
+          <h2 class="section-title">Our Families</h2>
+          <div class="section-divider"></div>
+        </div>
+
+        <div class="family-grid">
+
+          <article class="family-card reveal">
+            <p class="family-side">Groom's Family</p>
+            <h3>Parents</h3>
+            <p class="family-names">
+              Rev. Fr. Koshy Mathew<br>
+              Mrs. Rachel P. Jose
+            </p>
+          </article>
+
+          <article class="family-card reveal">
+            <p class="family-side">Bride's Family</p>
+            <h3>Parents</h3>
+            <p class="family-names">
+              Late Mr. K. A. Abraham<br>
+              Mrs. Jessy Abraham
+            </p>
+          </article>
+
+        </div>
+
       </div>
-    </div>
-  </div>
-</section>
+    </section>
 
-<section class="verse">
-  <div class="section-inner reveal">
-    <div class="cross" aria-hidden="true">✝</div>
 
-    <div class="kicker">A blessing for the journey</div>
+    <!-- Siblings -->
 
-    <blockquote>
-      “Two are better than one… If either of them falls down,
-      one can help the other up.”
-    </blockquote>
+    <section class="siblings">
+      <div class="section-inner">
 
-    <cite>Ecclesiastes 4:9–10</cite>
-  </div>
-</section>
+        <div class="section-heading reveal">
+          <p class="section-kicker">With love</p>
+          <h2 class="section-title">Our Siblings</h2>
+          <div class="section-divider"></div>
+        </div>
 
-<section class="details">
-  <div class="section-inner">
-    <div class="kicker reveal">The celebration</div>
+        <div class="family-grid">
 
-    <h2 class="reveal">We look forward to welcoming you</h2>
+          <article class="family-card reveal">
+            <p class="family-side">Groom's Side</p>
+            <h3>Siblings</h3>
+            <p class="family-names">
+              Ms. Mariam Anna Mathew
+            </p>
+          </article>
 
-    <div class="detail-card reveal">
-      <p class="venue">Parish Hall</p>
+          <article class="family-card reveal">
+            <p class="family-side">Bride's Side</p>
+            <h3>Siblings</h3>
+            <p class="family-names">
+              Mr. Robin K. Abraham<br>
+              Mr. Roshin K. Abraham
+            </p>
+          </article>
 
-      <p>St. Thomas Orthodox Church</p>
+        </div>
 
-      <p>
-        Vadakkanmannoor, Amayannoor<br>
-        Kottayam, Kerala, India
-      </p>
+      </div>
+    </section>
 
-      <div class="rule"></div>
 
-      <p>
-        <strong>Friday, 15 January 2027</strong><br>
-        Guest arrival · 4:45 PM<br>
-        Reception begins · 5:00 PM
-      </p>
+    <!-- Photo slideshow area -->
 
-      <p>
-        <a
-          class="map-link"
-          href="https://www.google.com/maps/search/?api=1&query=St.+Thomas+Orthodox+Church+Vadakkanmannoor+Amayannoor+Kottayam+Kerala"
-          target="_blank"
-          rel="noopener">
-          View location on Google Maps ↗
-        </a>
-      </p>
-    </div>
-  </div>
-</section>
+    <section class="gallery">
+      <div class="section-inner">
 
-</main>
+        <div class="section-heading reveal">
+          <p class="section-kicker">A glimpse of our journey</p>
+          <h2 class="section-title">Our Moments</h2>
+          <div class="section-divider"></div>
+        </div>
 
-<footer>
-  <div class="cross" aria-hidden="true">✝</div>
-  <div class="small-note">WITH LOVE AND GRATITUDE</div>
-  <div class="names">Vivek &amp; Riya</div>
-  <div class="small-note">15 JANUARY 2027</div>
-</footer>
+        <div class="reveal">
+
+          <div class="photo-frame">
+
+            <div class="photo-placeholder" id="photoPlaceholder">
+              <div class="photo-symbol">♡</div>
+              <p>Our Beautiful Moments</p>
+              <small>Our photographs will be shared here</small>
+            </div>
+
+          </div>
+
+          <div class="slide-dots" aria-label="Slideshow navigation">
+            <button class="slide-dot active" data-slide="0" aria-label="Slide 1"></button>
+            <button class="slide-dot" data-slide="1" aria-label="Slide 2"></button>
+            <button class="slide-dot" data-slide="2" aria-label="Slide 3"></button>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- Bible verse -->
+
+    <section class="verse">
+      <div class="section-inner reveal">
+
+        <div class="cross verse-cross" aria-label="Orthodox Christian cross">☦</div>
+
+        <div class="section-heading">
+          <p class="section-kicker">A blessing for our journey</p>
+          <h2 class="section-title">A Word of Love</h2>
+          <div class="section-divider"></div>
+        </div>
+
+        <blockquote>
+          “Two are better than one… If either of them falls down,
+          one can help the other up.”
+        </blockquote>
+
+        <p class="verse-reference">
+          Ecclesiastes 4:9–10
+        </p>
+
+      </div>
+    </section>
+
+
+    <!-- Venue and event details -->
+
+    <section class="details">
+      <div class="section-inner">
+
+        <div class="section-heading reveal">
+          <p class="section-kicker">We look forward to seeing you</p>
+          <h2 class="section-title">The Celebration</h2>
+          <div class="section-divider"></div>
+        </div>
+
+        <div class="venue-card reveal">
+
+          <div class="venue-icon">✧</div>
+
+          <h3 class="venue-name">Parish Hall</h3>
+
+          <p class="venue-address">
+            St. Thomas Orthodox Church<br>
+            Vadakkanmannoor, Amayannoor<br>
+            Kottayam, Kerala, India
+          </p>
+
+          <div class="event-time">
+            <strong>Friday, 15 January 2027</strong><br>
+            Guest Arrival · 4:45 PM<br>
+            Reception Begins · 5:00 PM
+          </div>
+
+          <a
+            class="map-link"
+            href="https://www.google.com/maps/search/?api=1&query=St.+Thomas+Orthodox+Church+Vadakkanmannoor+Amayannoor+Kottayam+Kerala"
+            target="_blank"
+            rel="noopener noreferrer">
+            View Location
+          </a>
+
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+
+  <!-- Closing footer -->
+
+  <footer>
+    <div class="footer-name">Kith and Kin</div>
+  </footer>
 
 </div>
 
+
 <script>
-/* OPEN INVITATION */
 
-const openButton = document.getElementById('openInvite');
-const invitation = document.getElementById('invitation');
+/* Open invitation */
 
-openButton.addEventListener('click', () => {
-  invitation.classList.add('visible');
+const openButton = document.getElementById("openInvitation");
+const invitation = document.getElementById("invitation");
 
-  openButton.textContent = 'Invitation opened';
+openButton.addEventListener("click", function () {
+
+  invitation.classList.add("visible");
+
+  openButton.textContent = "Invitation Opened";
   openButton.disabled = true;
 
-  invitation.scrollIntoView({
-    behavior: 'smooth'
-  });
+  setTimeout(function () {
+    invitation.scrollIntoView({
+      behavior: "smooth",
+      block: "start"
+    });
+  }, 250);
 
-  revealElements();
 });
 
-/* SCROLL-BASED ANIMATIONS */
 
-const revealItems = document.querySelectorAll('.reveal');
+/* Scroll reveal animations */
 
-function revealElements() {
-  revealItems.forEach(item => {
-    const position = item.getBoundingClientRect();
+const revealElements = document.querySelectorAll(".reveal");
 
-    if (position.top < window.innerHeight - 60) {
-      item.classList.add('visible');
-    }
-  });
-}
+if ("IntersectionObserver" in window) {
 
-window.addEventListener('scroll', revealElements);
+  const observer = new IntersectionObserver((entries, observer) => {
 
-/* SLIDESHOW NAVIGATION */
+    entries.forEach(entry => {
 
-const dots = [...document.querySelectorAll('.dot')];
+      if (entry.isIntersecting) {
+        entry.target.classList.add("is-visible");
+        observer.unobserve(entry.target);
+      }
 
-dots.forEach((dot, index) => {
-  dot.addEventListener('click', () => {
-
-    dots.forEach(item => {
-      item.classList.remove('active');
     });
 
-    dot.classList.add('active');
-
-    const photoFrame = document.getElementById('photoFrame');
-
-    photoFrame.innerHTML = `
-      <div>
-        <strong>Your photograph ${index + 1} will appear here</strong>
-        <span>SLIDESHOW · PHOTOS TO BE ADDED</span>
-      </div>
-    `;
+  }, {
+    threshold: 0.15
   });
+
+  revealElements.forEach(element => {
+    observer.observe(element);
+  });
+
+} else {
+
+  revealElements.forEach(element => {
+    element.classList.add("is-visible");
+  });
+
+}
+
+
+/* Slideshow placeholder navigation */
+
+const dots = document.querySelectorAll(".slide-dot");
+const photoPlaceholder = document.getElementById("photoPlaceholder");
+
+const slideMessages = [
+  "Our Beautiful Moments",
+  "Memories to Treasure",
+  "A Journey of Togetherness"
+];
+
+dots.forEach(dot => {
+
+  dot.addEventListener("click", function () {
+
+    const slideNumber = Number(this.dataset.slide);
+
+    dots.forEach(item => {
+      item.classList.remove("active");
+    });
+
+    this.classList.add("active");
+
+    photoPlaceholder.style.opacity = "0";
+
+    setTimeout(() => {
+
+      photoPlaceholder.querySelector("p").textContent =
+        slideMessages[slideNumber];
+
+      photoPlaceholder.style.transition = "opacity .7s ease";
+      photoPlaceholder.style.opacity = "1";
+
+    }, 250);
+
+  });
+
 });
+
 </script>
 
 </body>
