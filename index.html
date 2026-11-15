@@ -1355,6 +1355,20 @@ const invitation = document.getElementById('invitation');
 
 openButton.addEventListener('click', () => {
 
+  // Start the piano music directly from the visitor's tap. This is important
+  // on mobile browsers, which commonly block sound autoplay on page load.
+  const audio = document.getElementById('weddingMusic');
+  const musicButton = document.getElementById('musicButton');
+  const musicButtonText = document.getElementById('musicButtonText');
+  const musicStart = audio.play();
+
+  musicStart.then(() => {
+    musicButtonText.textContent = 'Pause music';
+    musicButton.setAttribute('aria-label', 'Pause music');
+  }).catch(() => {
+    // Keep the existing Play music control available if playback is blocked.
+  });
+
   invitation.classList.add('visible');
 
   openButton.textContent = 'Invitation opened';
