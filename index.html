@@ -808,6 +808,175 @@ footer::after {
   letter-spacing: .12em;
 }
 
+
+
+/* GUESTBOOK — WISHES FROM FAMILY AND FRIENDS */
+.guestbook {
+  background:
+    radial-gradient(ellipse at 50% 0%, rgba(182,154,96,.08), transparent 58%),
+    #f8f6ef;
+}
+
+.guestbook-inner {
+  max-width: 760px;
+  margin: 0 auto;
+}
+
+.guestbook-intro {
+  max-width: 560px;
+  margin: 0 auto 30px;
+  color: #687963;
+  line-height: 1.8;
+  font-size: 15px;
+}
+
+.guestbook-form {
+  max-width: 620px;
+  margin: 0 auto 42px;
+  padding: 28px;
+  text-align: left;
+  background: rgba(255,255,255,.68);
+  border: 1px solid rgba(184,193,174,.8);
+  box-shadow: 0 12px 32px rgba(60,80,57,.06);
+}
+
+.guestbook-field { margin-bottom: 17px; }
+.guestbook-field label {
+  display: block;
+  margin-bottom: 7px;
+  color: #52684f;
+  font: 10px Arial, sans-serif;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+}
+
+.guestbook-field input,
+.guestbook-field textarea {
+  display: block;
+  width: 100%;
+  padding: 13px 14px;
+  border: 1px solid #d4d8cc;
+  border-radius: 2px;
+  background: rgba(255,255,255,.86);
+  color: #405540;
+  font: 15px Georgia, serif;
+  outline: none;
+  transition: border-color .2s, box-shadow .2s;
+}
+
+.guestbook-field input:focus,
+.guestbook-field textarea:focus {
+  border-color: #87977e;
+  box-shadow: 0 0 0 3px rgba(120,139,114,.12);
+}
+
+.guestbook-field textarea {
+  min-height: 120px;
+  resize: vertical;
+  line-height: 1.65;
+}
+
+.guestbook-submit {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 44px;
+  padding: 12px 24px;
+  border: 1px solid #9c895e;
+  border-radius: 30px;
+  background: #344d39;
+  color: #f8f4e8;
+  font: 10px Arial, sans-serif;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: transform .2s, background .2s, opacity .2s;
+}
+
+.guestbook-submit:hover { background: #263d2d; transform: translateY(-1px); }
+.guestbook-submit:disabled { opacity: .6; cursor: wait; transform: none; }
+
+.guestbook-status {
+  min-height: 22px;
+  margin: 13px 0 0;
+  color: #52684f;
+  font: 12px Arial, sans-serif;
+  line-height: 1.6;
+}
+.guestbook-status.error { color: #9b4b42; }
+
+.guestbook-count {
+  margin: 0 0 18px;
+  color: #8a7956;
+  font: 10px Arial, sans-serif;
+  letter-spacing: .17em;
+  text-transform: uppercase;
+}
+
+.guestbook-messages {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 15px;
+  text-align: left;
+}
+
+.guest-message {
+  padding: 22px 22px 20px;
+  background: rgba(255,255,255,.72);
+  border: 1px solid rgba(184,193,174,.7);
+  box-shadow: 0 8px 22px rgba(60,80,57,.045);
+  overflow-wrap: anywhere;
+}
+
+.guest-message-name {
+  margin: 0 0 10px;
+  color: #344d39;
+  font-size: 19px;
+  font-style: italic;
+  font-weight: 400;
+}
+
+.guest-message-text {
+  margin: 0;
+  color: #5d6d59;
+  font-size: 14px;
+  line-height: 1.75;
+  white-space: pre-wrap;
+}
+
+.guest-message-date {
+  display: block;
+  margin-top: 13px;
+  color: #9a906f;
+  font: 9px Arial, sans-serif;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+}
+
+.guestbook-empty {
+  grid-column: 1 / -1;
+  padding: 24px;
+  color: #7a866f;
+  border: 1px dashed #c8cebf;
+  font-size: 14px;
+  line-height: 1.7;
+  text-align: center;
+}
+
+/* Honeypot is hidden from people, but remains available to basic bots */
+.guestbook-honey {
+  position: absolute !important;
+  left: -10000px !important;
+  width: 1px !important;
+  height: 1px !important;
+  overflow: hidden !important;
+}
+
+@media(max-width:600px) {
+  .guestbook-form { padding: 21px 17px; }
+  .guestbook-messages { grid-template-columns: 1fr; }
+}
+
 /* RESPONSIVE */
 
 @media(max-width:600px) {
@@ -1092,6 +1261,49 @@ footer::after {
     </div>
   </section>
 
+
+
+  <!-- GUESTBOOK: LEAVE YOUR WISHES -->
+  <section class="guestbook" id="guestbook">
+    <div class="section-inner reveal guestbook-inner">
+      <div class="kicker">A keepsake from you</div>
+      <h2>Leave Your Wishes</h2>
+      <p class="guestbook-intro">
+        Your love and kind words mean so much to us. Leave a little message
+        for the couple to cherish.
+      </p>
+
+      <form class="guestbook-form" id="guestbookForm" autocomplete="on">
+        <div class="guestbook-field">
+          <label for="guestName">Your name</label>
+          <input id="guestName" name="name" type="text" maxlength="80"
+                 autocomplete="name" placeholder="Your name" required>
+        </div>
+
+        <div class="guestbook-field">
+          <label for="guestMessage">Your wishes</label>
+          <textarea id="guestMessage" name="message" maxlength="500"
+                    placeholder="Write your wishes for Vivek &amp; Riya..." required></textarea>
+        </div>
+
+        <div class="guestbook-honey" aria-hidden="true">
+          <label for="guestWebsite">Leave this field empty</label>
+          <input id="guestWebsite" name="website" type="text" tabindex="-1" autocomplete="off">
+        </div>
+
+        <button class="guestbook-submit" id="guestbookSubmit" type="submit">
+          Send Your Wishes
+        </button>
+        <p class="guestbook-status" id="guestbookStatus" role="status" aria-live="polite"></p>
+      </form>
+
+      <p class="guestbook-count" id="guestbookCount">Loading wishes...</p>
+      <div class="guestbook-messages" id="guestbookMessages" aria-live="polite">
+        <div class="guestbook-empty">Gathering your messages...</div>
+      </div>
+    </div>
+  </section>
+
 </main>
 
 <!-- FOOTER: KITH AND KIN -->
@@ -1157,7 +1369,7 @@ openButton.addEventListener('click', () => {
 /* SCROLL REVEAL ANIMATIONS */
 
 const revealElements = document.querySelectorAll(
-  '.reveal, .family, .detail-card, .footer-name'
+  '.reveal, .family, .detail-card, .footer-name, .guestbook-inner'
 );
 
 if ('IntersectionObserver' in window) {
@@ -1394,6 +1606,183 @@ weddingMusic.addEventListener('ended', () => {
 
 });
 
+</script>
+
+
+<!-- SUPABASE GUESTBOOK CONNECTION -->
+<script type="module">
+  import { createClient } from 'https://esm.sh/@supabase/supabase-js@2';
+
+  const SUPABASE_URL = 'https://ejquhzvogernysxnmuhq.supabase.co';
+  const SUPABASE_PUBLISHABLE_KEY = 'sb_publishable_fbEPV0-BhL8UFD5PIrnwVw_fKVdfD18';
+  const supabase = createClient(SUPABASE_URL, SUPABASE_PUBLISHABLE_KEY);
+
+  const form = document.getElementById('guestbookForm');
+  const nameInput = document.getElementById('guestName');
+  const messageInput = document.getElementById('guestMessage');
+  const honeyInput = document.getElementById('guestWebsite');
+  const submitButton = document.getElementById('guestbookSubmit');
+  const status = document.getElementById('guestbookStatus');
+  const count = document.getElementById('guestbookCount');
+  const messagesContainer = document.getElementById('guestbookMessages');
+
+  const displayedIds = new Set();
+  let totalMessages = 0;
+
+  function setStatus(message, isError = false) {
+    status.textContent = message;
+    status.classList.toggle('error', isError);
+  }
+
+  function updateCount() {
+    count.textContent = `${totalMessages} ${totalMessages === 1 ? 'beautiful wish' : 'beautiful wishes'} shared`;
+  }
+
+  function formatDate(value) {
+    if (!value) return '';
+    const date = new Date(value);
+    if (Number.isNaN(date.getTime())) return '';
+    return date.toLocaleDateString(undefined, { year: 'numeric', month: 'short', day: 'numeric' });
+  }
+
+  function makeMessageCard(item) {
+    const card = document.createElement('article');
+    card.className = 'guest-message';
+
+    const guestName = document.createElement('h3');
+    guestName.className = 'guest-message-name';
+    guestName.textContent = item.name;
+
+    const guestText = document.createElement('p');
+    guestText.className = 'guest-message-text';
+    guestText.textContent = item.message;
+
+    const date = document.createElement('time');
+    date.className = 'guest-message-date';
+    date.textContent = formatDate(item.created_at);
+    if (item.created_at) date.dateTime = item.created_at;
+
+    card.append(guestName, guestText);
+    if (date.textContent) card.append(date);
+    return card;
+  }
+
+  function addMessage(item, atTop = true) {
+    if (!item || item.id === undefined || displayedIds.has(item.id)) return;
+    const empty = messagesContainer.querySelector('.guestbook-empty');
+    if (empty) empty.remove();
+
+    const card = makeMessageCard(item);
+    if (atTop) messagesContainer.prepend(card);
+    else messagesContainer.append(card);
+    displayedIds.add(item.id);
+    totalMessages += 1;
+    updateCount();
+  }
+
+  async function loadMessages() {
+    const { data, error, count: exactCount } = await supabase
+      .from('guest_messages')
+      .select('id, name, message, created_at', { count: 'exact' })
+      .order('created_at', { ascending: false })
+      .limit(100);
+
+    if (error) {
+      messagesContainer.innerHTML = '';
+      const empty = document.createElement('div');
+      empty.className = 'guestbook-empty';
+      empty.textContent = 'The guestbook is temporarily unavailable. Please try again later.';
+      messagesContainer.append(empty);
+      count.textContent = 'Guestbook temporarily unavailable';
+      console.error('Guestbook load failed:', error.message);
+      return;
+    }
+
+    messagesContainer.innerHTML = '';
+    displayedIds.clear();
+    totalMessages = 0;
+
+    if (!data || data.length === 0) {
+      const empty = document.createElement('div');
+      empty.className = 'guestbook-empty';
+      empty.textContent = 'Be the first to leave a wish for Vivek & Riya.';
+      messagesContainer.append(empty);
+    } else {
+      data.forEach(item => addMessage(item, false));
+    }
+
+    if (typeof exactCount === 'number') {
+      totalMessages = exactCount;
+      updateCount();
+    }
+  }
+
+  form.addEventListener('submit', async (event) => {
+    event.preventDefault();
+    setStatus('');
+
+    // Basic honeypot check for automated form submissions.
+    if (honeyInput.value.trim()) return;
+
+    const name = nameInput.value.trim();
+    const message = messageInput.value.trim();
+
+    if (!name || name.length > 80) {
+      setStatus('Please enter your name (up to 80 characters).', true);
+      return;
+    }
+    if (!message || message.length > 500) {
+      setStatus('Please enter a message of up to 500 characters.', true);
+      return;
+    }
+
+    // A modest per-browser cooldown; database policies remain the authority.
+    const lastSent = Number(localStorage.getItem('weddingGuestbookLastSent') || 0);
+    if (Date.now() - lastSent < 30000) {
+      setStatus('Please wait a little before sending another wish.', true);
+      return;
+    }
+
+    submitButton.disabled = true;
+    submitButton.textContent = 'Sending...';
+
+    const { data, error } = await supabase
+      .from('guest_messages')
+      .insert([{ name, message }])
+      .select('id, name, message, created_at')
+      .single();
+
+    if (error) {
+      console.error('Guestbook submission failed:', error.message);
+      setStatus('We could not send your wish just now. Please try again in a moment.', true);
+    } else {
+      localStorage.setItem('weddingGuestbookLastSent', String(Date.now()));
+      addMessage(data, true);
+      form.reset();
+      setStatus('Your wishes have been shared. Thank you!');
+    }
+
+    submitButton.disabled = false;
+    submitButton.textContent = 'Send Your Wishes';
+  });
+
+  await loadMessages();
+
+  // Live updates for newly submitted wishes.
+  supabase
+    .channel('guestbook-live-updates')
+    .on('postgres_changes', {
+      event: 'INSERT',
+      schema: 'public',
+      table: 'guest_messages'
+    }, (payload) => {
+      addMessage(payload.new, true);
+    })
+    .subscribe((state) => {
+      if (state === 'CHANNEL_ERROR' || state === 'TIMED_OUT') {
+        console.warn('Guestbook live updates are temporarily unavailable.');
+      }
+    });
 </script>
 
 </body>
