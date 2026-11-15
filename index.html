@@ -1109,7 +1109,7 @@ footer::after {
 
     <div class="music-player">
 
-      <audio id="weddingMusic" loop preload="none">
+      <audio id="weddingMusic" loop autoplay preload="auto">
         <source src="assets/wedding-piano.mp3" type="audio/mpeg">
       </audio>
 
@@ -1117,10 +1117,10 @@ footer::after {
         class="music-button"
         id="musicButton"
         type="button"
-        aria-label="Play piano music"
+        aria-label="Play music"
       >
         <span class="music-note">♫</span>
-        <span id="musicButtonText">Play piano music</span>
+        <span id="musicButtonText">Play music</span>
       </button>
 
       <div class="music-caption">
@@ -1346,6 +1346,19 @@ const weddingMusic = document.getElementById('weddingMusic');
 const musicButton = document.getElementById('musicButton');
 const musicButtonText = document.getElementById('musicButtonText');
 
+/* BEST-EFFORT AUTOPLAY WHEN THE INVITATION OPENS.
+   Browsers may block sound until the visitor interacts with the page. */
+(async () => {
+  try {
+    await weddingMusic.play();
+    musicButtonText.textContent = 'Pause music';
+    musicButton.setAttribute('aria-label', 'Pause music');
+  } catch (error) {
+    // Autoplay was blocked; the visitor can start music with the button.
+    console.info('Autoplay was blocked by the browser. The visitor can press Play music.');
+  }
+})();
+
 musicButton.addEventListener('click', async () => {
 
   if (weddingMusic.paused) {
@@ -1354,8 +1367,8 @@ musicButton.addEventListener('click', async () => {
 
       await weddingMusic.play();
 
-      musicButtonText.textContent = 'Pause piano music';
-      musicButton.setAttribute('aria-label', 'Pause piano music');
+      musicButtonText.textContent = 'Pause music';
+      musicButton.setAttribute('aria-label', 'Pause music');
 
     } catch (error) {
 
@@ -1368,8 +1381,8 @@ musicButton.addEventListener('click', async () => {
 
     weddingMusic.pause();
 
-    musicButtonText.textContent = 'Play piano music';
-    musicButton.setAttribute('aria-label', 'Play piano music');
+    musicButtonText.textContent = 'Play music';
+    musicButton.setAttribute('aria-label', 'Play music');
 
   }
 
@@ -1377,7 +1390,7 @@ musicButton.addEventListener('click', async () => {
 
 weddingMusic.addEventListener('ended', () => {
 
-  musicButtonText.textContent = 'Play piano music';
+  musicButtonText.textContent = 'Play music';
 
 });
 
